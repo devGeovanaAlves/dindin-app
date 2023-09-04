@@ -1,8 +1,11 @@
-/* purple-btn, purple-font, purple-resume, gray-color, gray-label, gray-btn, red-color, orange-color, blue-color, header-gradient, modal-background*/
-
 body {
   padding: 0;
   margin: 0;
+
+  background-image: url(../assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 15%;
 }
 
 .container-page-home {
@@ -12,11 +15,4 @@ body {
 
 .container-main-home {
   display: flex;
-}
-
-body {
-  background-image: url(../assets/background.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 100% 15%;
 }

@@ -1,11 +1,12 @@
 .container-description {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  position: relative;
+  top: 7vh;
 
-  height: 80vh;
+  height: 73vh;
   width: 60vw;
-  margin-left: 70px;
+  margin-left: 120px;
 }
 
 .container-description h1 {
