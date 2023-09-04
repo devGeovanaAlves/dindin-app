@@ -1,0 +1,22 @@
+:root {
+  --purple-btn: #7978d9;
+  --purple-font: #7b61ff;
+  --purple-resume: #645ffb;
+  --gray-color: #484848;
+  --gray-label: #555555;
+  --gray-btn: #b9b9b9;
+  --red-color: #ff576b;
+  --orange-color: #fa8c10;
+  --blue-color: #3a9ff1;
+
+  --header-gradient: linear-gradient(90deg, #05ede3 0.02%, #645ffb 99.63%);
+  --modal-background: rgba(61, 61, 61, 0.48);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* purple-btn, purple-font, purple-resume, gray-color, gray-label, gray-btn, red-color, orange-color, blue-color, header-gradient, modal-background*/
