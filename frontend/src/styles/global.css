@@ -21,6 +21,18 @@
 
 /* purple-btn, purple-font, purple-resume, gray-color, gray-label, gray-btn, red-color, orange-color, blue-color, header-gradient, modal-background*/
 
+.container-page {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+
+  background-image: url(../assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 50%;
+}
+
 .container-form {
   display: flex;
   flex-direction: column;
