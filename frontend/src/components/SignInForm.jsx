@@ -2,7 +2,7 @@ import "../styles/SignInForm.css";
 
 const SignInForm = () => {
   return (
-    <div className="container-form-sign-in">
+    <div className="container-form sign-in">
       <form>
         <h1>Login</h1>
         <label>
