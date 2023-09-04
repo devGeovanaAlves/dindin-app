@@ -1,0 +1,68 @@
+.container-form-sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 80vh;
+  width: 40vw;
+  margin-right: 70px;
+}
+
+.container-form-sign-in form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 513px;
+  height: 535px;
+
+  background-color: #fff;
+}
+
+.container-form-sign-in form h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 40px 0 40px 0;
+
+  color: #7978d9;
+}
+
+.container-form-sign-in form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 3vh;
+}
+
+.container-form-sign-in form label span {
+  font-family: "Rubik", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+
+  color: #484848;
+}
+
+.container-form-sign-in form label input {
+  width: 449px;
+  height: 40px;
+}
+
+.input-submit {
+  width: 449px;
+  height: 48px;
+  margin-top: 60px;
+
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  background-color: #7978d9;
+  color: #fff;
+}
