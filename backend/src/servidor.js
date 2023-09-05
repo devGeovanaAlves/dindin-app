@@ -1,11 +1,11 @@
 const express = require("express");
 
-const app = express();
+const routes = express();
 
-app.use(express.json());
+routes.use(express.json());
 
-app.get("/", (request, response) => {
+routes.get("/", (request, response) => {
   response.send("Hello World");
 });
 
-module.exports = app;
+module.exports = routes;

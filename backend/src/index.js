@@ -1,3 +1,10 @@
-const app = require("./servidor");
+const express = require('express');
+const routes = require("./servidor");
 
-app.listen(3333);
+const app = express();
+
+app.use(routes);
+
+app.listen(8000, () => {
+    console.log('Servidor rodando na porta 8000');
+});
