@@ -1,4 +1,6 @@
-const TransactionsResume = () => {
+import "../styles/TransactionsResume.css";
+
+const TransactionsResume = ({ transactions, toCurrencyStyle }) => {
   return <div>TransactionsResume</div>;
 };
 
