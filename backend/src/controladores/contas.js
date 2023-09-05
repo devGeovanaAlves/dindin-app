@@ -55,11 +55,52 @@ const criarContas = async (req, res) => {
 
         return res.status(201).json(novaConta);
     } catch (error) {
-        return res.status(400).json(error);
+        return res.status(500).json(error);
+    }
+};
+
+const atualizarContas = async (req, res) => {
+    const { numeroConta } = req.params;
+    const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
+
+
+    try {
+        if (!req.body) {
+            return res.status(400).json({ message: 'Precisa altera algum campo' });
+        }
+
+        const usuarioEncontrado = bancoDeDados.contas.find((user) => {
+            return user.numero === Number(numeroConta);
+        });
+
+        if (!usuarioEncontrado) {
+            return res.status(400).json({ message: 'Número da conta inválido' });
+        }
+
+        const cpfExiste = bancoDeDados.contas.find((user) => {
+            return user.usuario.cpf === Number(cpf);
+        });
+
+        if (cpfExiste) {
+            return res.status(400).json({ message: 'CPF inválido' });
+        }
+
+        const emailExiste = bancoDeDados.contas.find((user) => {
+            return user.usuario.email === email;
+        });
+
+        if (emailExiste) {
+            return res.status(400).json({ message: 'Email inválido' });
+        }
+
+        return res.status(200).json({ message: 'Conta atualizada com sucesso' });
+    } catch (error) {
+        return res.status(500).json(error);
     }
 };
 
 module.exports = {
     listarContas,
-    criarContas
+    criarContas,
+    atualizarContas
 };
