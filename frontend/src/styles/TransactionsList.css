@@ -1,4 +1,4 @@
-table {
+.table-transactions-list {
   margin-left: 80px;
   width: 65vw;
   border-collapse: collapse;
@@ -6,6 +6,8 @@ table {
   font-family: "Lato", sans-serif;
   font-size: 14px;
   text-align: center;
+
+  background-color: #fafafa;
 }
 
 .container-header-table {

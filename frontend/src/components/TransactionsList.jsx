@@ -4,7 +4,7 @@ import RemoveIcon from "../assets/remove-icon.svg";
 
 const TransactionsList = ({ transactions, toCurrencyStyle }) => {
   return (
-    <table>
+    <table className="table-transactions-list">
       <thead className="container-header-table">
         <tr>
           <th className=" header-column">Data</th>
