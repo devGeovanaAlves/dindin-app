@@ -1,0 +1,19 @@
+.container-dashboard Header {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, #05ede3 0.02%, #645ffb 99.63%);
+}
+
+.container-transactions-components {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+
+  position: relative;
+  bottom: 7vh;
+  z-index: 3;
+
+  background-color: #fff;
+  border-radius: 50px 50px 0px 0px;
+}
