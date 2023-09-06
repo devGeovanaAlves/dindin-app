@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import "../styles/EditProfileModal.css";
 
 const EditProfileModal = () => {
   return (
     <div className="external-modal-container">
-      <div className="internal-modal-container">
-        <div className="modal-container-title edit-profile">
+      <div className="internal-modal-container edit-profile">
+        <div className="modal-container-title ">
           <h1>Editar Perfil</h1>
           <Link></Link>
         </div>
