@@ -56,10 +56,7 @@ const Dashboard = () => {
           transactions={transactions}
           toCurrencyStyle={toCurrencyStyle}
         />
-        <TransactionsResume
-          transactions={transactions}
-          toCurrencyStyle={toCurrencyStyle}
-        />
+        <TransactionsResume />
       </main>
     </div>
   );

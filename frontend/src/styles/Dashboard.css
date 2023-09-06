@@ -6,10 +6,10 @@
 
 .container-transactions-components {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  padding-top: 100px;
   height: 80vh;
-
   position: relative;
   bottom: 7vh;
   z-index: 3;
