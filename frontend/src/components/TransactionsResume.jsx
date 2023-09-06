@@ -1,8 +1,8 @@
 import "../styles/TransactionsResume.css";
 
-const TransactionsResume = ({ transactions, toCurrencyStyle }) => {
+const TransactionsResume = () => {
   return (
-    <div>
+    <div className="container-transactions-resume">
       <table className="table-transactions-resume">
         <thead className="container-header-table-resume">
           <tr>
@@ -29,6 +29,8 @@ const TransactionsResume = ({ transactions, toCurrencyStyle }) => {
           </tr>
         </tfoot>
       </table>
+
+      <button>Adicionar Registro</button>
     </div>
   );
 };
