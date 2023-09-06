@@ -13,12 +13,12 @@ const listarContas = async (req, res) => {
 
 const criarContas = async (req, res) => {
     const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
-    let numero = bancoDeDados.contas.length + 1;
+    let numero = String(bancoDeDados.contas.length + 1);
     const saldo = 0;
 
     try {
         const cpfExiste = bancoDeDados.contas.find((user) => {
-            return user.usuario.cpf === Number(cpf);
+            return user.usuario.cpf === cpf;
         });
 
         if (cpfExiste) {
@@ -42,7 +42,7 @@ const criarContas = async (req, res) => {
             saldo,
             usuario: {
                 nome,
-                cpf: Number(cpf),
+                cpf,
                 data_nascimento,
                 telefone,
                 email,
@@ -63,34 +63,57 @@ const atualizarContas = async (req, res) => {
     const { numeroConta } = req.params;
     const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
 
-
     try {
-        if (!req.body) {
+        if (Object.keys(req.body).length === 0) {
             return res.status(400).json({ message: 'Precisa altera algum campo' });
         }
 
         const usuarioEncontrado = bancoDeDados.contas.find((user) => {
-            return user.numero === Number(numeroConta);
+            return user.numero === numeroConta;
         });
 
         if (!usuarioEncontrado) {
-            return res.status(400).json({ message: 'Número da conta inválido' });
+            return res.status(404).json({ message: 'Número da conta inválido' });
         }
 
-        const cpfExiste = bancoDeDados.contas.find((user) => {
-            return user.usuario.cpf === Number(cpf);
-        });
-
-        if (cpfExiste) {
-            return res.status(400).json({ message: 'CPF inválido' });
+        if (nome) {
+            usuarioEncontrado.usuario.nome = nome;
         }
 
-        const emailExiste = bancoDeDados.contas.find((user) => {
-            return user.usuario.email === email;
-        });
+        if (data_nascimento) {
+            usuarioEncontrado.usuario.data_nascimento = data_nascimento;
+        }
 
-        if (emailExiste) {
-            return res.status(400).json({ message: 'Email inválido' });
+        if (telefone) {
+            usuarioEncontrado.usuario.telefone = telefone;
+        }
+
+        if (senha) {
+            usuarioEncontrado.usuario.senha = senha;
+        }
+
+        if (cpf) {
+            const cpfEncontrado = bancoDeDados.contas.find((user) => {
+                return user.usuario.cpf === Number(cpf) && user.numero !== Number(numeroConta);
+            });
+
+            if (cpfEncontrado) {
+                return res.status(400).json({ message: 'CPF já existe' });
+            }
+
+            usuarioEncontrado.usuario.cpf = cpf;
+        }
+
+        if (email) {
+            const emailEncontrado = bancoDeDados.contas.find((user) => {
+                return user.usuario.email === email && user.numero !== Number(numeroConta);
+            });
+
+            if (emailEncontrado) {
+                return res.status(400).json({ message: 'Email já existe' });
+            }
+
+            usuarioEncontrado.usuario.email = email;
         }
 
         return res.status(200).json({ message: 'Conta atualizada com sucesso' });
