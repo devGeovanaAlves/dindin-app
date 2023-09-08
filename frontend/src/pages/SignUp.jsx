@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/SignUpForm.css";
 import { useState } from "react";
@@ -8,24 +8,36 @@ const SignUp = ({ users, setUsers }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const styleErrorMessage = {
+    color: "#ff576b",
+    fontSize: "14px",
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const user = {
-      name,
-      email,
-      password,
-      checkPassword,
-      transactions: [],
-    };
+    if (password === checkPassword) {
+      const user = {
+        name,
+        email,
+        password,
+        checkPassword,
+        transactions: [],
+      };
 
-    setUsers((prevUsers) => [...prevUsers, user]);
+      setUsers((prevUsers) => [...prevUsers, user]);
 
-    setName("");
-    setEmail("");
-    setPassword("");
-    setCheckPassword("");
+      setName("");
+      setEmail("");
+      setPassword("");
+      setCheckPassword("");
+      setStatusMessage("success");
+      navigate("/");
+    } else {
+      setStatusMessage("error");
+    }
   };
 
   return (
@@ -68,7 +80,12 @@ const SignUp = ({ users, setUsers }) => {
           </label>
 
           <label>
-            <span>Confirmação de senha</span> {}
+            <span>Confirmação de senha</span>{" "}
+            {statusMessage === "error" && (
+              <span style={styleErrorMessage}>
+                As senhas precisam ser iguais
+              </span>
+            )}
             <input
               type="password"
               name="checkPassword"
