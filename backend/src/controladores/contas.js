@@ -133,7 +133,7 @@ const excluirContas = async (req, res) => {
             return res.status(404).json({ message: "Usuário não encontrado" });
         }
 
-        if (usuarioEncontrado.saldo > 0 && usuarioEncontrado.saldo !== 0) {
+        if (usuarioEncontrado.saldo > 0) {
             return res.status(400).json({ message: "Não é possível deletar usuário com saldo na conta" });
         }
 
