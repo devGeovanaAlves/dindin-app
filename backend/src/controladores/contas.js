@@ -55,7 +55,7 @@ const criarContas = async (req, res) => {
 
         return res.status(201).json(novaConta);
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(500).json(error.message);
     }
 };
 
@@ -118,12 +118,40 @@ const atualizarContas = async (req, res) => {
 
         return res.status(200).json({ message: 'Conta atualizada com sucesso' });
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(500).json(error.message);
+    }
+};
+
+const excluirContas = async (req, res) => {
+    const { numeroConta } = req.params;
+    try {
+        const usuarioEncontrado = bancoDeDados.contas.find((user) => {
+            return user.numero === numeroConta;
+        });
+
+        if (!usuarioEncontrado) {
+            return res.status(404).json({ message: "Usuário não encontrado" });
+        }
+
+        if (usuarioEncontrado.saldo > 0 && usuarioEncontrado.saldo !== 0) {
+            return res.status(400).json({ message: "Não é possível deletar usuário com saldo na conta" });
+        }
+
+        const usuarioDeletado = bancoDeDados.contas.filter((user) => {
+            return user.numero !== numeroConta;
+        });
+
+        bancoDeDados.contas = [...usuarioDeletado];
+
+        return res.status(200).json({ message: 'Conta excluída com sucesso' });
+    } catch (error) {
+        return res.status(500).json(error.message);
     }
 };
 
 module.exports = {
     listarContas,
     criarContas,
-    atualizarContas
+    atualizarContas,
+    excluirContas
 };
