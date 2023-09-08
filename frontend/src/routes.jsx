@@ -8,11 +8,16 @@ import AddTransaction from "./components/AddTransactionModal";
 import EditProfile from "./components/EditProfileModal";
 
 const MainRoutes = () => {
+  const [users, setUsers] = useState([]);
+
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route
+          path="/sign-up"
+          element={<SignUp users={users} setUsers={setUsers} />}
+        />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/edit/:id" element={<EditTransaction />} />
         <Route path="/dashboard/add" element={<AddTransaction />} />
