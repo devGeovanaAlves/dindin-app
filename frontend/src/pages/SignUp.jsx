@@ -4,6 +4,7 @@ import "../styles/SignUpForm.css";
 import { useState } from "react";
 
 const SignUp = ({ users, setUsers }) => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
