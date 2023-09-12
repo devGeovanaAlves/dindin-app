@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import "../styles/SignUpForm.css";
 import { useState } from "react";
 
-const SignUp = ({ users, setUsers }) => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,13 +28,9 @@ const SignUp = ({ users, setUsers }) => {
         transactions: [],
       };
 
-      setUsers((prevUsers) => [...prevUsers, user]);
+      let localUser = JSON.stringify(user);
+      localStorage.setItem(`${user.email}`, localUser);
 
-      setName("");
-      setEmail("");
-      setPassword("");
-      setCheckPassword("");
-      setStatusMessage("success");
       navigate("/");
     } else {
       setStatusMessage("error");
