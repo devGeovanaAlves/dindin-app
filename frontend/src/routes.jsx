@@ -56,7 +56,7 @@ const MainRoutes = () => {
             element={<Dashboard user={user} handleDataAuth={handleDataAuth} />}
           />
           <Route path="/dashboard/edit/:id" element={<EditTransaction />} />
-          <Route path="/dashboard/add" element={<AddTransaction />} />
+          {/* <Route path="/dashboard/add" element={<AddTransaction />} /> */}
           <Route path="/dashboard/edit-profile" element={<EditProfile />} />
         </Route>
       </Routes>

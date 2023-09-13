@@ -2,8 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 1000;
 
   font-family: "Rubik", sans-serif;
 
@@ -16,7 +21,6 @@
   justify-content: center;
   align-items: center;
 
-  height: 85vh;
   width: 30vw;
   border-radius: 20px;
 
@@ -38,10 +42,13 @@
   font-weight: 700;
 }
 
-.modal-container-title a {
+.modal-container-title button {
   width: 28.58px;
   height: 28.382px;
+  border: none;
+  cursor: pointer;
 
+  background: none;
   background-image: url("../assets/close-icon.svg");
   background-size: cover;
 }
@@ -62,7 +69,7 @@
   font-weight: 700;
   cursor: pointer;
 
-  background: #b9b9b9;
+  background-color: #b9b9b9;
   color: #fff;
 }
 
@@ -107,6 +114,8 @@
   border: none;
   border-radius: 5px;
   margin-top: 15px;
+  position: relative;
+  bottom: 12px;
 
   font-size: 12px;
   font-weight: 700;

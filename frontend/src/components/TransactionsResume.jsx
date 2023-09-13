@@ -1,6 +1,6 @@
 import "../styles/TransactionsResume.css";
 
-const TransactionsResume = () => {
+const TransactionsResume = ({ setShowModal }) => {
   return (
     <div className="container-transactions-resume">
       <table className="table-transactions-resume">
@@ -30,7 +30,7 @@ const TransactionsResume = () => {
         </tfoot>
       </table>
 
-      <button>Adicionar Registro</button>
+      <button onClick={() => setShowModal(true)}>Adicionar Registro</button>
     </div>
   );
 };
