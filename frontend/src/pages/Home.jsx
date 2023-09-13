@@ -24,8 +24,6 @@ const Home = ({ handleDataAuth }) => {
     let storageUser = localStorage.getItem(`${email}`);
     let user = JSON.parse(storageUser);
 
-    handleDataAuth({ userPass: user.password, formPass: password });
-
     if (!storageUser) {
       setError(true);
       setStatus("Usuário não encontrado");
@@ -33,6 +31,11 @@ const Home = ({ handleDataAuth }) => {
     }
 
     if (user.password === password) {
+      handleDataAuth({
+        userPass: user.password,
+        formPass: password,
+        userKey: user.email,
+      });
       navigate("/dashboard");
     } else {
       setError(true);

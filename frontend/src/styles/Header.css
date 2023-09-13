@@ -53,6 +53,12 @@ header {
   height: 56px;
 }
 
+.logout-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .logout-icon {
   width: 22px;
   height: 27.5px;

@@ -46,10 +46,10 @@ const toCurrencyStyle = (value) => {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 };
 
-const Dashboard = () => {
+const Dashboard = ({ user, handleDataAuth }) => {
   return (
     <div className="container-dashboard">
-      <Header />
+      <Header user={user} handleDataAuth={handleDataAuth} />
 
       <main className="container-transactions-components">
         <TransactionsList

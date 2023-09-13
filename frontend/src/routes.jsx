@@ -3,12 +3,14 @@ import "./styles/global.css";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
+import Header from "./components/HeaderDashboard";
 import EditTransaction from "./components/EditTransactionModal";
 import AddTransaction from "./components/AddTransactionModal";
 import EditProfile from "./components/EditProfileModal";
 import { useEffect, useState } from "react";
 
 const MainRoutes = () => {
+  localStorage.setItem("user-logged", "");
   const [dataAuth, setDataAuth] = useState({});
 
   const handleDataAuth = (childObj) => {
@@ -16,12 +18,15 @@ const MainRoutes = () => {
   };
 
   const isAuthenticated = ({ userPass, formPass }) => {
-    return userPass && formPass && userPass === formPass ? true : false;
+    return userPass && formPass && userPass === formPass;
   };
 
   const ProtectedRoutes = ({ condition, redirectTo }) => {
     return condition ? <Outlet /> : <Navigate to={redirectTo} />;
   };
+
+  const user = JSON.parse(localStorage.getItem(`${dataAuth.userKey}`));
+  const userLogged = localStorage.getItem("user-logged");
 
   return (
     <>
@@ -46,7 +51,10 @@ const MainRoutes = () => {
             />
           }
         >
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={<Dashboard user={user} handleDataAuth={handleDataAuth} />}
+          />
           <Route path="/dashboard/edit/:id" element={<EditTransaction />} />
           <Route path="/dashboard/add" element={<AddTransaction />} />
           <Route path="/dashboard/edit-profile" element={<EditProfile />} />
