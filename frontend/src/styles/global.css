@@ -21,6 +21,10 @@
 
 /* purple-btn, purple-font, purple-resume, gray-color, gray-label, gray-btn, red-color, orange-color, blue-color, header-gradient, modal-background*/
 
+a {
+  text-decoration: none;
+}
+
 .container-page {
   display: flex;
   flex-direction: column;
