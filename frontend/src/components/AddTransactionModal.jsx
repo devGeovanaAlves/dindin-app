@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/AddTransactionModal.css";
 
-const AddTransactionModal = ({ showModal, setShowModal }) => {
+const AddTransactionModal = ({ showModal, setShowModal, user }) => {
   const [type, setType] = useState("");
   const [btnE, setBtnE] = useState({});
   const [btnO, setBtnO] = useState({});
@@ -9,6 +9,24 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(""); // 20 23-09-01
   const [description, setDescription] = useState("");
+
+  const [userState, setUserState] = useState({
+    name: user.name,
+    email: user.email,
+    password: user.password,
+    checkPassword: user.checkPassword,
+    transactions: user.transactions,
+  });
+
+  useEffect(() => {
+    let localUser = JSON.stringify(userState);
+    localStorage.setItem(`${userState.email}`, localUser);
+  }, [userState]);
+
+  const setId = () => {
+    if (type === "entrada") return `E${Math.floor(Math.random() * 100)}`;
+    if (type === "retirada") return `S${Math.floor(Math.random() * 100)}`;
+  };
 
   const findDay = () => {
     const dayWeek = new Date(date).getDay();
@@ -26,8 +44,6 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
     return days[dayWeek + 1];
   };
 
-  console.log(findDay());
-
   const handleType = (type) => {
     setType(type);
 
@@ -38,6 +54,25 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
       setBtnE({ background: "#b9b9b9" });
       setBtnO({ background: "#FF576B" });
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const newTransaction = {
+      id: setId(),
+      type,
+      value,
+      category,
+      date,
+      day: findDay(),
+      description,
+    };
+
+    setUserState((prevUserState) => ({
+      ...prevUserState,
+      transactions: [...prevUserState.transactions, newTransaction],
+    }));
   };
 
   return (
@@ -69,14 +104,15 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
               </button>
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>
                 <span>Valor</span>
                 <input
                   className="input-modal"
                   type="number"
                   name="value"
-                  min="1"
+                  step="0.01"
+                  min="0.01"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
                 />

@@ -10,7 +10,6 @@ import EditProfile from "./components/EditProfileModal";
 import { useEffect, useState } from "react";
 
 const MainRoutes = () => {
-  localStorage.setItem("user-logged", "");
   const [dataAuth, setDataAuth] = useState({});
 
   const handleDataAuth = (childObj) => {
@@ -26,7 +25,6 @@ const MainRoutes = () => {
   };
 
   const user = JSON.parse(localStorage.getItem(`${dataAuth.userKey}`));
-  const userLogged = localStorage.getItem("user-logged");
 
   return (
     <>
