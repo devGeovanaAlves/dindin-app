@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import "../styles/AddTransactionModal.css";
 
-const AddTransactionModal = ({ showModal, setShowModal, user }) => {
+const AddTransactionModal = ({
+  showModal,
+  setShowModal,
+  user,
+  userState,
+  setUserState,
+}) => {
   const [type, setType] = useState("");
   const [btnE, setBtnE] = useState({});
   const [btnO, setBtnO] = useState({});
@@ -9,14 +15,6 @@ const AddTransactionModal = ({ showModal, setShowModal, user }) => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(""); // 20 23-09-01
   const [description, setDescription] = useState("");
-
-  const [userState, setUserState] = useState({
-    name: user.name,
-    email: user.email,
-    password: user.password,
-    checkPassword: user.checkPassword,
-    transactions: user.transactions,
-  });
 
   useEffect(() => {
     let localUser = JSON.stringify(userState);

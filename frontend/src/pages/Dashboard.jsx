@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import AddTransactionModal from "../components/AddTransactionModal";
 import Header from "../components/HeaderDashboard";
@@ -16,7 +16,24 @@ const Dashboard = ({ user, handleDataAuth }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const transactions = user.transactions;
+  const [userState, setUserState] = useState(() => {
+    const userData = JSON.parse(localStorage.getItem(`${user.email}`));
+    return (
+      userData || {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        checkPassword: user.checkPassword,
+        transactions: user.transactions,
+      }
+    );
+  });
+
+  let transactions = userState.transactions;
+
+  useEffect(() => {
+    localStorage.setItem(`${user.email}`, JSON.stringify(userState));
+  }, [userState, user]);
 
   return (
     <div className="container-dashboard">
@@ -34,6 +51,8 @@ const Dashboard = ({ user, handleDataAuth }) => {
         showModal={showModal}
         setShowModal={setShowModal}
         user={user}
+        userState={userState}
+        setUserState={setUserState}
       />
     </div>
   );

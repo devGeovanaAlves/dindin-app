@@ -24,7 +24,11 @@ const MainRoutes = () => {
     return condition ? <Outlet /> : <Navigate to={redirectTo} />;
   };
 
-  const user = JSON.parse(localStorage.getItem(`${dataAuth.userKey}`));
+  let user = JSON.parse(localStorage.getItem(`${dataAuth.userKey}`));
+
+  useEffect(() => {
+    user = JSON.parse(localStorage.getItem(`${dataAuth.userKey}`));
+  }, []);
 
   return (
     <>
