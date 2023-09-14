@@ -5,6 +5,28 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
   const [type, setType] = useState("");
   const [btnE, setBtnE] = useState({});
   const [btnO, setBtnO] = useState({});
+  const [value, setValue] = useState("");
+  const [category, setCategory] = useState("");
+  const [date, setDate] = useState(""); // 20 23-09-01
+  const [description, setDescription] = useState("");
+
+  const findDay = () => {
+    const dayWeek = new Date(date).getDay();
+    const days = [
+      "Domingo",
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+      "Domingo",
+    ];
+
+    return days[dayWeek + 1];
+  };
+
+  console.log(findDay());
 
   const handleType = (type) => {
     setType(type);
@@ -17,10 +39,6 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
       setBtnO({ background: "#FF576B" });
     }
   };
-
-  const colorEntries = () => {};
-
-  console.log(type);
 
   return (
     <>
@@ -59,12 +77,19 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
                   type="number"
                   name="value"
                   min="1"
+                  value={value}
+                  onChange={(event) => setValue(event.target.value)}
                 />
               </label>
 
               <label>
                 <span>Categoria</span>
-                <select className="input-modal" name="category">
+                <select
+                  className="input-modal"
+                  name="category"
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                >
                   <option value="Alimentação">Alimentação</option>
                   <option value="Assinaturas e Serviços">
                     Assinaturas e Serviços
@@ -78,12 +103,24 @@ const AddTransactionModal = ({ showModal, setShowModal }) => {
 
               <label>
                 <span>Data</span>
-                <input className="input-modal" type="date" name="date" />
+                <input
+                  className="input-modal"
+                  type="date"
+                  name="date"
+                  value={date}
+                  onChange={(event) => setDate(event.target.value)}
+                />
               </label>
 
               <label>
                 <span>Descrição</span>
-                <input className="input-modal" type="text" name="description" />
+                <input
+                  className="input-modal"
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                />
               </label>
 
               <label>
