@@ -1,5 +1,5 @@
 const EditTransactionModal = () => {
-  return <div>EditTransactionModal</div>;
+  return <></>;
 };
 
 export default EditTransactionModal;

@@ -1,6 +1,19 @@
+import { useState } from "react";
 import "../styles/TransactionsResume.css";
 
-const TransactionsResume = ({ setShowModal }) => {
+const TransactionsResume = ({
+  setShowModal,
+  userState,
+  setUserState,
+  setModalType,
+  setToGoEdit,
+}) => {
+  const handleAdd = () => {
+    setToGoEdit(false);
+    setShowModal(true);
+    setModalType("Adicionar");
+  };
+
   return (
     <div className="container-transactions-resume">
       <table className="table-transactions-resume">
@@ -30,7 +43,7 @@ const TransactionsResume = ({ setShowModal }) => {
         </tfoot>
       </table>
 
-      <button onClick={() => setShowModal(true)}>Adicionar Registro</button>
+      <button onClick={() => handleAdd()}>Adicionar Registro</button>
     </div>
   );
 };

@@ -7,10 +7,13 @@ const AddTransactionModal = ({
   user,
   userState,
   setUserState,
+  toGoEdit,
+  dataTransaction,
+  modalType,
 }) => {
-  const [type, setType] = useState("");
-  const [btnE, setBtnE] = useState({});
-  const [btnO, setBtnO] = useState({});
+  const [type, setType] = useState("retirada");
+  const [btnE, setBtnE] = useState({ background: "#b9b9b9" });
+  const [btnO, setBtnO] = useState({ background: "#FF576B" });
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(""); // 20 23-09-01
@@ -42,9 +45,7 @@ const AddTransactionModal = ({
     return days[dayWeek + 1];
   };
 
-  const handleType = (type) => {
-    setType(type);
-
+  useEffect(() => {
     if (type === "entrada") {
       setBtnE({ background: "#3A9FF1" });
       setBtnO({ background: "#b9b9b9" });
@@ -52,7 +53,7 @@ const AddTransactionModal = ({
       setBtnE({ background: "#b9b9b9" });
       setBtnO({ background: "#FF576B" });
     }
-  };
+  }, [type]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,6 +72,11 @@ const AddTransactionModal = ({
       ...prevUserState,
       transactions: [...prevUserState.transactions, newTransaction],
     }));
+
+    setValue("");
+    setCategory("");
+    setDate("");
+    setDescription("");
   };
 
   return (
@@ -79,23 +85,23 @@ const AddTransactionModal = ({
         <div className="external-modal-container">
           <div className="internal-modal-container">
             <div className="modal-container-title">
-              <h1>Adicionar Registro</h1>
+              <h1>{modalType} Registro</h1>
               <button onClick={() => setShowModal(false)}></button>
             </div>
 
             <div className="modal-container-buttons">
               <button
-                value={type}
+                value={toGoEdit ? dataTransaction.type : type}
                 name="entrada"
-                onClick={() => handleType("entrada")}
+                onClick={() => setType("entrada")}
                 style={btnE}
               >
                 Entrada
               </button>
               <button
-                value={type}
+                value={toGoEdit ? dataTransaction.type : type}
                 name="retirada"
-                onClick={() => handleType("retirada")}
+                onClick={() => setType("retirada")}
                 style={btnO}
               >
                 Saída
@@ -111,8 +117,9 @@ const AddTransactionModal = ({
                   name="value"
                   step="0.01"
                   min="0.01"
-                  value={value}
+                  value={toGoEdit ? dataTransaction.value : value}
                   onChange={(event) => setValue(event.target.value)}
+                  required
                 />
               </label>
 
@@ -121,8 +128,9 @@ const AddTransactionModal = ({
                 <select
                   className="input-modal"
                   name="category"
-                  value={category}
+                  value={toGoEdit ? dataTransaction.category : category}
                   onChange={(event) => setCategory(event.target.value)}
+                  required
                 >
                   <option value="Alimentação">Alimentação</option>
                   <option value="Assinaturas e Serviços">
@@ -141,8 +149,9 @@ const AddTransactionModal = ({
                   className="input-modal"
                   type="date"
                   name="date"
-                  value={date}
+                  value={toGoEdit ? dataTransaction.date : date}
                   onChange={(event) => setDate(event.target.value)}
+                  required
                 />
               </label>
 
@@ -152,8 +161,9 @@ const AddTransactionModal = ({
                   className="input-modal"
                   type="text"
                   name="description"
-                  value={description}
+                  value={toGoEdit ? dataTransaction.description : description}
                   onChange={(event) => setDescription(event.target.value)}
+                  required
                 />
               </label>
 

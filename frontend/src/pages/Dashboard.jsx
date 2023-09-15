@@ -7,15 +7,7 @@ import TransactionsResume from "../components/TransactionsResume";
 import "../styles/Dashboard.css";
 
 const Dashboard = ({ user, handleDataAuth }) => {
-  const toCurrencyStyle = (value) => {
-    return value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  };
-
   const [showModal, setShowModal] = useState(false);
-
   const [userState, setUserState] = useState(() => {
     const userData = JSON.parse(localStorage.getItem(`${user.email}`));
     return (
@@ -28,8 +20,21 @@ const Dashboard = ({ user, handleDataAuth }) => {
       }
     );
   });
+  const transactions = userState.transactions;
+  const [modalType, setModalType] = useState("Adicionar");
+  const [toGoEdit, setToGoEdit] = useState(false);
+  const [dataTransaction, setDataTransaction] = useState({});
 
-  let transactions = userState.transactions;
+  const catchDataTransaction = (childObj) => {
+    setDataTransaction(childObj);
+  };
+
+  const toCurrencyStyle = (value) => {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem(`${user.email}`, JSON.stringify(userState));
@@ -43,8 +48,18 @@ const Dashboard = ({ user, handleDataAuth }) => {
         <TransactionsList
           transactions={transactions}
           toCurrencyStyle={toCurrencyStyle}
+          catchDataTransaction={catchDataTransaction}
+          setToGoEdit={setToGoEdit}
+          setShowModal={setShowModal}
+          setModalType={setModalType}
         />
-        <TransactionsResume setShowModal={setShowModal} />
+        <TransactionsResume
+          setShowModal={setShowModal}
+          userState={userState}
+          setUserState={setUserState}
+          setModalType={setModalType}
+          setToGoEdit={setToGoEdit}
+        />
       </main>
 
       <AddTransactionModal
@@ -53,6 +68,11 @@ const Dashboard = ({ user, handleDataAuth }) => {
         user={user}
         userState={userState}
         setUserState={setUserState}
+        toGoEdit={toGoEdit}
+        setToGoEdit={setToGoEdit}
+        dataTransaction={dataTransaction}
+        modalType={modalType}
+        setModalType={setModalType}
       />
     </div>
   );

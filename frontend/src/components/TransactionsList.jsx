@@ -2,7 +2,21 @@ import "../styles/TransactionsList.css";
 import EditIcon from "../assets/edit-icon.svg";
 import RemoveIcon from "../assets/remove-icon.svg";
 
-const TransactionsList = ({ transactions, toCurrencyStyle }) => {
+const TransactionsList = ({
+  transactions,
+  toCurrencyStyle,
+  catchDataTransaction,
+  setToGoEdit,
+  setShowModal,
+  setModalType,
+}) => {
+  const handleEdit = (data) => {
+    catchDataTransaction(data);
+    setToGoEdit(true);
+    setShowModal(true);
+    setModalType("Editar");
+  };
+
   return (
     <table className="table-transactions-list">
       <thead className="container-header-table">
@@ -28,13 +42,18 @@ const TransactionsList = ({ transactions, toCurrencyStyle }) => {
               <td>{transaction.day} </td>
               <td>{transaction.description} </td>
               <td>{transaction.category} </td>
-              <td style={colorValue}>{toCurrencyStyle(transaction.value)} </td>
+              <td style={colorValue}>
+                {toCurrencyStyle(parseInt(transaction.value))}{" "}
+              </td>
               <td className="buttons-line">
-                <img
-                  className="edit-icon"
-                  src={EditIcon}
-                  alt="Editar registro"
-                />
+                <button onClick={() => handleEdit(transaction)}>
+                  {" "}
+                  <img
+                    className="edit-icon"
+                    src={EditIcon}
+                    alt="Editar registro"
+                  />
+                </button>
                 <img
                   className="remove-icon"
                   src={RemoveIcon}
