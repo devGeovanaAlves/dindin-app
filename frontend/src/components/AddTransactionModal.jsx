@@ -12,15 +12,22 @@ const AddTransactionModal = ({
   dataTransaction,
   modalType,
   setModalType,
+  setType,
+  type,
+  btnE,
+  setBtnE,
+  btnO,
+  setBtnO,
+  value,
+  setValue,
+  category,
+  setCategory,
+  date,
+  setDate,
+  description,
+  setDescription,
+  remove,
 }) => {
-  const [type, setType] = useState("retirada");
-  const [btnE, setBtnE] = useState({ background: "#b9b9b9" });
-  const [btnO, setBtnO] = useState({ background: "#FF576B" });
-  const [value, setValue] = useState("");
-  const [category, setCategory] = useState("");
-  const [date, setDate] = useState(""); // 20 23-09-01
-  const [description, setDescription] = useState("");
-
   useEffect(() => {
     let localUser = JSON.stringify(userState);
     localStorage.setItem(`${userState.email}`, localUser);
@@ -65,8 +72,10 @@ const AddTransactionModal = ({
     }
   }, [type]);
 
-  const handleSubmitNew = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+
+    toGoEdit && remove(dataTransaction);
 
     const newTransaction = {
       id: setId(),
@@ -83,6 +92,8 @@ const AddTransactionModal = ({
       ...prevUserState,
       transactions: [...prevUserState.transactions, newTransaction],
     }));
+
+    toGoEdit && setShowModal(false);
 
     setValue("");
     setCategory("");
@@ -125,7 +136,7 @@ const AddTransactionModal = ({
               </button>
             </div>
 
-            <form onSubmit={handleSubmitNew}>
+            <form onSubmit={handleSubmit}>
               <label>
                 <span>Valor</span>
                 <input

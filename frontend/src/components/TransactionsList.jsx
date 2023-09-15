@@ -37,7 +37,7 @@ const TransactionsList = ({
 
     catchDataTransaction(data);
     setToGoEdit(true);
-    setShowEditModal(true);
+    setShowModal(true); //alterado
     setModalType("Editar");
   };
 

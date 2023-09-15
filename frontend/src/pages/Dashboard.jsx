@@ -5,7 +5,6 @@ import Header from "../components/HeaderDashboard";
 import TransactionsList from "../components/TransactionsList";
 import TransactionsResume from "../components/TransactionsResume";
 import "../styles/Dashboard.css";
-import EditTransactionModal from "../components/EditTransactionModal";
 
 const Dashboard = ({ user, handleDataAuth }) => {
   const [showModal, setShowModal] = useState(false);
@@ -123,19 +122,6 @@ const Dashboard = ({ user, handleDataAuth }) => {
       </main>
 
       <AddTransactionModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        user={user}
-        userState={userState}
-        setUserState={setUserState}
-        toGoEdit={toGoEdit}
-        setToGoEdit={setToGoEdit}
-        dataTransaction={dataTransaction}
-        modalType={modalType}
-        setModalType={setModalType}
-      />
-
-      <EditTransactionModal
         showModal={showModal}
         setShowModal={setShowModal}
         user={user}
