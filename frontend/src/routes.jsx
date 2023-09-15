@@ -1,13 +1,9 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import "./styles/global.css";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
-import Header from "./components/HeaderDashboard";
-import EditTransaction from "./components/EditTransactionModal";
-import AddTransaction from "./components/AddTransactionModal";
-import EditProfile from "./components/EditProfileModal";
-import { useEffect, useState } from "react";
+import "./styles/global.css";
 
 const MainRoutes = () => {
   const [dataAuth, setDataAuth] = useState({});
@@ -57,9 +53,6 @@ const MainRoutes = () => {
             path="/dashboard"
             element={<Dashboard user={user} handleDataAuth={handleDataAuth} />}
           />
-          <Route path="/dashboard/edit/:id" element={<EditTransaction />} />
-          {/* <Route path="/dashboard/add" element={<AddTransaction />} /> */}
-          <Route path="/dashboard/edit-profile" element={<EditProfile />} />
         </Route>
       </Routes>
     </>
