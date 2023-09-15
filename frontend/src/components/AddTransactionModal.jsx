@@ -8,8 +8,10 @@ const AddTransactionModal = ({
   userState,
   setUserState,
   toGoEdit,
+  setToGoEdit,
   dataTransaction,
   modalType,
+  setModalType,
 }) => {
   const [type, setType] = useState("retirada");
   const [btnE, setBtnE] = useState({ background: "#b9b9b9" });
@@ -25,8 +27,10 @@ const AddTransactionModal = ({
   }, [userState]);
 
   const setId = () => {
-    if (type === "entrada") return `E${Math.floor(Math.random() * 100)}`;
-    if (type === "retirada") return `S${Math.floor(Math.random() * 100)}`;
+    if (type === "entrada")
+      return `E${Math.floor(Math.random() * 100) + date.replace("-", "")}`;
+    if (type === "retirada")
+      return `S${Math.floor(Math.random() * 100) + date.replace("-", "")} `;
   };
 
   const findDay = () => {
@@ -45,6 +49,12 @@ const AddTransactionModal = ({
     return days[dayWeek + 1];
   };
 
+  const dateFormat = () => {
+    let newDate = new Date(date);
+
+    return newDate.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+  };
+
   useEffect(() => {
     if (type === "entrada") {
       setBtnE({ background: "#3A9FF1" });
@@ -55,7 +65,7 @@ const AddTransactionModal = ({
     }
   }, [type]);
 
-  const handleSubmit = (event) => {
+  const handleSubmitNew = (event) => {
     event.preventDefault();
 
     const newTransaction = {
@@ -63,6 +73,7 @@ const AddTransactionModal = ({
       type,
       value,
       category,
+      dateFormat: dateFormat(),
       date,
       day: findDay(),
       description,
@@ -79,6 +90,12 @@ const AddTransactionModal = ({
     setDescription("");
   };
 
+  const handleClose = () => {
+    setToGoEdit(false);
+    setShowModal(false);
+    setModalType("Adicionar");
+  };
+
   return (
     <>
       {showModal && (
@@ -86,12 +103,12 @@ const AddTransactionModal = ({
           <div className="internal-modal-container">
             <div className="modal-container-title">
               <h1>{modalType} Registro</h1>
-              <button onClick={() => setShowModal(false)}></button>
+              <button onClick={() => handleClose()}></button>
             </div>
 
             <div className="modal-container-buttons">
               <button
-                value={toGoEdit ? dataTransaction.type : type}
+                value={type}
                 name="entrada"
                 onClick={() => setType("entrada")}
                 style={btnE}
@@ -99,7 +116,7 @@ const AddTransactionModal = ({
                 Entrada
               </button>
               <button
-                value={toGoEdit ? dataTransaction.type : type}
+                value={type}
                 name="retirada"
                 onClick={() => setType("retirada")}
                 style={btnO}
@@ -108,7 +125,7 @@ const AddTransactionModal = ({
               </button>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitNew}>
               <label>
                 <span>Valor</span>
                 <input
@@ -117,7 +134,7 @@ const AddTransactionModal = ({
                   name="value"
                   step="0.01"
                   min="0.01"
-                  value={toGoEdit ? dataTransaction.value : value}
+                  value={value}
                   onChange={(event) => setValue(event.target.value)}
                   required
                 />
@@ -128,10 +145,13 @@ const AddTransactionModal = ({
                 <select
                   className="input-modal"
                   name="category"
-                  value={toGoEdit ? dataTransaction.category : category}
+                  value={category}
                   onChange={(event) => setCategory(event.target.value)}
                   required
                 >
+                  <option value="-">
+                    ------------------- Selecione uma opção -------------------
+                  </option>
                   <option value="Alimentação">Alimentação</option>
                   <option value="Assinaturas e Serviços">
                     Assinaturas e Serviços
@@ -140,6 +160,9 @@ const AddTransactionModal = ({
                   <option value="Compras">Compras</option>
                   <option value="Cuidados pessoais">Cuidados pessoais</option>
                   <option value="Educação">Educação</option>
+                  <option value="Pix">Pix</option>
+                  <option value="Vendas">Vendas</option>
+                  <option value="Outros">Outros</option>
                 </select>
               </label>
 
@@ -149,7 +172,7 @@ const AddTransactionModal = ({
                   className="input-modal"
                   type="date"
                   name="date"
-                  value={toGoEdit ? dataTransaction.date : date}
+                  value={date}
                   onChange={(event) => setDate(event.target.value)}
                   required
                 />
@@ -161,7 +184,7 @@ const AddTransactionModal = ({
                   className="input-modal"
                   type="text"
                   name="description"
-                  value={toGoEdit ? dataTransaction.description : description}
+                  value={description}
                   onChange={(event) => setDescription(event.target.value)}
                   required
                 />

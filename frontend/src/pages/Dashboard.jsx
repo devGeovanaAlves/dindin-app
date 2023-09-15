@@ -78,6 +78,14 @@ const Dashboard = ({ user, handleDataAuth }) => {
     setTotal(countTotal);
   };
 
+  const [type, setType] = useState("retirada");
+  const [btnE, setBtnE] = useState({ background: "#b9b9b9" });
+  const [btnO, setBtnO] = useState({ background: "#FF576B" });
+  const [value, setValue] = useState("");
+  const [category, setCategory] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+
   return (
     <div className="container-dashboard">
       <Header user={user} handleDataAuth={handleDataAuth} />
@@ -93,6 +101,13 @@ const Dashboard = ({ user, handleDataAuth }) => {
           setShowEditModal={setShowEditModal}
           setModalType={setModalType}
           remove={remove}
+          setType={setType}
+          setValue={setValue}
+          setCategory={setCategory}
+          setDate={setDate}
+          setDescription={setDescription}
+          setBtnE={setBtnE}
+          setBtnO={setBtnO}
         />
         <TransactionsResume
           setShowModal={setShowModal}
@@ -133,6 +148,21 @@ const Dashboard = ({ user, handleDataAuth }) => {
         setModalType={setModalType}
         showEditModal={showEditModal}
         setShowEditModal={setShowEditModal}
+        type={type}
+        value={value}
+        category={category}
+        date={date}
+        description={description}
+        setBtnE={setBtnE}
+        setBtnO={setBtnO}
+        btnE={btnE}
+        btnO={btnO}
+        setType={setType}
+        setValue={setValue}
+        setCategory={setCategory}
+        setDate={setDate}
+        setDescription={setDescription}
+        remove={remove}
       />
     </div>
   );

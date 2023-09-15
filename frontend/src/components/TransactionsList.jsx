@@ -12,8 +12,29 @@ const TransactionsList = ({
   showEditModal,
   setShowEditModal,
   remove,
+  setType,
+  setValue,
+  setCategory,
+  setDate,
+  setDescription,
+  setBtnE,
+  setBtnO,
 }) => {
   const handleEdit = (data) => {
+    setType(data.type);
+    setValue(data.value);
+    setCategory(data.category);
+    setDate(data.date);
+    setDescription(data.description);
+
+    if (data.type === "entrada") {
+      setBtnE({ background: "#3A9FF1" });
+      setBtnO({ background: "#b9b9b9" });
+    } else if (data.type === "retirada") {
+      setBtnE({ background: "#b9b9b9" });
+      setBtnO({ background: "#FF576B" });
+    }
+
     catchDataTransaction(data);
     setToGoEdit(true);
     setShowEditModal(true);
@@ -41,7 +62,7 @@ const TransactionsList = ({
               : { color: "#FA8C10", fontWeight: "700" };
           return (
             <tr key={transaction.id} className="container-line">
-              <td className="line-date">{transaction.date} </td>
+              <td className="line-date">{transaction.dateFormat}</td>
               <td>{transaction.day} </td>
               <td>{transaction.description} </td>
               <td>{transaction.category} </td>
