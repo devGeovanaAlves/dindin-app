@@ -9,8 +9,6 @@ const TransactionsList = ({
   setToGoEdit,
   setShowModal,
   setModalType,
-  showEditModal,
-  setShowEditModal,
   remove,
   setType,
   setValue,

@@ -1,10 +1,7 @@
-import { useState } from "react";
 import "../styles/TransactionsResume.css";
 
 const TransactionsResume = ({
   setShowModal,
-  userState,
-  setUserState,
   setModalType,
   setToGoEdit,
   inflow,

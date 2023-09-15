@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../styles/AddTransactionModal.css";
 
 const AddTransactionModal = ({
   showModal,
   setShowModal,
-  user,
   userState,
   setUserState,
   toGoEdit,

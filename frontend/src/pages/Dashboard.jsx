@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import AddTransactionModal from "../components/AddTransactionModal";
 import Header from "../components/HeaderDashboard";
 import TransactionsList from "../components/TransactionsList";
@@ -8,7 +7,6 @@ import "../styles/Dashboard.css";
 
 const Dashboard = ({ user, handleDataAuth }) => {
   const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [userState, setUserState] = useState(() => {
     const userData = JSON.parse(localStorage.getItem(`${user.email}`));
     return (
@@ -96,8 +94,6 @@ const Dashboard = ({ user, handleDataAuth }) => {
           catchDataTransaction={catchDataTransaction}
           setToGoEdit={setToGoEdit}
           setShowModal={setShowModal}
-          showEditModal={showEditModal}
-          setShowEditModal={setShowEditModal}
           setModalType={setModalType}
           remove={remove}
           setType={setType}
@@ -110,7 +106,6 @@ const Dashboard = ({ user, handleDataAuth }) => {
         />
         <TransactionsResume
           setShowModal={setShowModal}
-          userState={userState}
           setUserState={setUserState}
           setModalType={setModalType}
           setToGoEdit={setToGoEdit}
@@ -129,7 +124,6 @@ const Dashboard = ({ user, handleDataAuth }) => {
       <AddTransactionModal
         showModal={showModal}
         setShowModal={setShowModal}
-        user={user}
         userState={userState}
         setUserState={setUserState}
         toGoEdit={toGoEdit}
@@ -137,8 +131,6 @@ const Dashboard = ({ user, handleDataAuth }) => {
         dataTransaction={dataTransaction}
         modalType={modalType}
         setModalType={setModalType}
-        showEditModal={showEditModal}
-        setShowEditModal={setShowEditModal}
         type={type}
         value={value}
         category={category}
