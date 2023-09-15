@@ -5,9 +5,11 @@ import Header from "../components/HeaderDashboard";
 import TransactionsList from "../components/TransactionsList";
 import TransactionsResume from "../components/TransactionsResume";
 import "../styles/Dashboard.css";
+import EditTransactionModal from "../components/EditTransactionModal";
 
 const Dashboard = ({ user, handleDataAuth }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [userState, setUserState] = useState(() => {
     const userData = JSON.parse(localStorage.getItem(`${user.email}`));
     return (
@@ -29,6 +31,16 @@ const Dashboard = ({ user, handleDataAuth }) => {
     setDataTransaction(childObj);
   };
 
+  const remove = (data) => {
+    let newTransactions = transactions.filter(
+      (transaction) => transaction !== data
+    );
+    setUserState((prevUserState) => ({
+      ...prevUserState,
+      transactions: newTransactions,
+    }));
+  };
+
   const toCurrencyStyle = (value) => {
     return value.toLocaleString("pt-BR", {
       style: "currency",
@@ -38,7 +50,33 @@ const Dashboard = ({ user, handleDataAuth }) => {
 
   useEffect(() => {
     localStorage.setItem(`${user.email}`, JSON.stringify(userState));
+    handleResume();
   }, [userState, user]);
+
+  const [inflow, setInflow] = useState(0);
+  const [outflow, setOutflow] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const handleResume = () => {
+    let countInflow = 0;
+    let countOutflow = 0;
+
+    userState.transactions.map((transaction) => {
+      let valueNumber = parseInt(transaction.value);
+
+      if (transaction.type === "entrada") {
+        countInflow += valueNumber;
+      } else {
+        countOutflow += valueNumber;
+      }
+    });
+
+    let countTotal = countInflow - countOutflow;
+
+    setInflow(countInflow);
+    setOutflow(countOutflow);
+    setTotal(countTotal);
+  };
 
   return (
     <div className="container-dashboard">
@@ -51,7 +89,10 @@ const Dashboard = ({ user, handleDataAuth }) => {
           catchDataTransaction={catchDataTransaction}
           setToGoEdit={setToGoEdit}
           setShowModal={setShowModal}
+          showEditModal={showEditModal}
+          setShowEditModal={setShowEditModal}
           setModalType={setModalType}
+          remove={remove}
         />
         <TransactionsResume
           setShowModal={setShowModal}
@@ -59,6 +100,10 @@ const Dashboard = ({ user, handleDataAuth }) => {
           setUserState={setUserState}
           setModalType={setModalType}
           setToGoEdit={setToGoEdit}
+          inflow={inflow}
+          outflow={outflow}
+          total={total}
+          toCurrencyStyle={toCurrencyStyle}
         />
       </main>
 
@@ -73,6 +118,21 @@ const Dashboard = ({ user, handleDataAuth }) => {
         dataTransaction={dataTransaction}
         modalType={modalType}
         setModalType={setModalType}
+      />
+
+      <EditTransactionModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        user={user}
+        userState={userState}
+        setUserState={setUserState}
+        toGoEdit={toGoEdit}
+        setToGoEdit={setToGoEdit}
+        dataTransaction={dataTransaction}
+        modalType={modalType}
+        setModalType={setModalType}
+        showEditModal={showEditModal}
+        setShowEditModal={setShowEditModal}
       />
     </div>
   );
