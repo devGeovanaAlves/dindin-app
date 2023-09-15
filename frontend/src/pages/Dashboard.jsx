@@ -118,6 +118,11 @@ const Dashboard = ({ user, handleDataAuth }) => {
           outflow={outflow}
           total={total}
           toCurrencyStyle={toCurrencyStyle}
+          setType={setType}
+          setValue={setValue}
+          setCategory={setCategory}
+          setDate={setDate}
+          setDescription={setDescription}
         />
       </main>
 

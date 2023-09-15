@@ -11,8 +11,18 @@ const TransactionsResume = ({
   outflow,
   total,
   toCurrencyStyle,
+  setType,
+  setValue,
+  setCategory,
+  setDate,
+  setDescription,
 }) => {
   const handleAdd = () => {
+    setType("retirada");
+    setValue("");
+    setCategory("");
+    setDate("");
+    setDescription("");
     setToGoEdit(false);
     setShowModal(true);
     setModalType("Adicionar");

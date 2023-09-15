@@ -93,12 +93,11 @@ const AddTransactionModal = ({
       transactions: [...prevUserState.transactions, newTransaction],
     }));
 
-    toGoEdit && setShowModal(false);
-
     setValue("");
     setCategory("");
     setDate("");
     setDescription("");
+    toGoEdit && setShowModal(false);
   };
 
   const handleClose = () => {
