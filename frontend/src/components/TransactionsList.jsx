@@ -9,11 +9,14 @@ const TransactionsList = ({
   setToGoEdit,
   setShowModal,
   setModalType,
+  showEditModal,
+  setShowEditModal,
+  remove,
 }) => {
   const handleEdit = (data) => {
     catchDataTransaction(data);
     setToGoEdit(true);
-    setShowModal(true);
+    setShowEditModal(true);
     setModalType("Editar");
   };
 
@@ -47,18 +50,20 @@ const TransactionsList = ({
               </td>
               <td className="buttons-line">
                 <button onClick={() => handleEdit(transaction)}>
-                  {" "}
                   <img
                     className="edit-icon"
                     src={EditIcon}
                     alt="Editar registro"
                   />
                 </button>
-                <img
-                  className="remove-icon"
-                  src={RemoveIcon}
-                  alt="Excluir registro"
-                />
+
+                <button onClick={() => remove(transaction)}>
+                  <img
+                    className="remove-icon"
+                    src={RemoveIcon}
+                    alt="Excluir registro"
+                  />
+                </button>
               </td>
             </tr>
           );
