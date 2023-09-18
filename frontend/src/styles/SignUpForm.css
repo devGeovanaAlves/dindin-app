@@ -1,25 +1,15 @@
 .sign-up {
   position: relative;
-  bottom: 5vh;
+  bottom: 6vh;
   left: 30vw;
 }
 
-.sign-up form {
-  height: 80vh;
-}
-
-.sign-up form h1 {
-  margin: 30px 0 20px 0;
+.sign-up h1 {
+  margin: 20px 0 20px 0;
 }
 
 .sign-up form label {
-  margin-bottom: 3vh;
-  gap: 5px;
-}
-
-.sign-up .input-submit {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 4vh;
 }
 
 .sign-up .redirect-home,
@@ -32,6 +22,14 @@
   font-weight: 700;
 
   color: #7b61ff;
+}
+
+.sign-up .input-submit {
+  margin: 20px 0 10px 0;
+}
+
+.redirect-home {
+  padding-bottom: 10px;
 }
 
 .sign-up .redirect-home a {

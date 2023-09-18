@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { isAuthenticated } from "./utils/functions";
-import { Home, SignUp, Dashboard } from "./utils/components";
+import { Home, SignUp, Dashboard, Error } from "./utils/components";
 import "./styles/global.css";
 
 const MainRoutes = () => {
@@ -45,6 +45,8 @@ const MainRoutes = () => {
             element={<Dashboard user={user} setDataAuth={setDataAuth} />}
           />
         </Route>
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </>
   );

@@ -11,7 +11,7 @@ export const onDataChange = (childObj, state) => {
  * Valida se senha digitada em form de login é igual a senha cadastrada.
  * @param {userPass} - Propriedade que contém senha do usuário
  * @param {formPass} - Propriedade que contém senha digitada para login
- * @returns
+ * @returns - true se usuário colocar senha correta, e false se não
  */
 export const isAuthenticated = ({ userPass, formPass }) => {
   return userPass && formPass && userPass === formPass;
