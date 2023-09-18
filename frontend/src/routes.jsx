@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
+import { isAuthenticated } from "./utils/functions";
+import { Home, SignUp, Dashboard } from "./utils/components";
 import "./styles/global.css";
 
 const MainRoutes = () => {
   const [dataAuth, setDataAuth] = useState({});
-
-  const isAuthenticated = ({ userPass, formPass }) => {
-    return userPass && formPass && userPass === formPass;
-  };
 
   const ProtectedRoutes = ({ condition, redirectTo }) => {
     return condition ? <Outlet /> : <Navigate to={redirectTo} />;

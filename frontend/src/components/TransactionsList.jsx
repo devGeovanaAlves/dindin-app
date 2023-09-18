@@ -1,15 +1,13 @@
-import "../styles/TransactionsList.css";
+import { onDataChange, toCurrencyStyle, remove } from "../utils/functions";
 import EditIcon from "../assets/edit-icon.svg";
 import RemoveIcon from "../assets/remove-icon.svg";
+import "../styles/TransactionsList.css";
 
 const TransactionsList = ({
   transactions,
-  toCurrencyStyle,
-  catchDataTransaction,
   setToGoEdit,
   setShowModal,
   setModalType,
-  remove,
   setType,
   setValue,
   setCategory,
@@ -17,6 +15,8 @@ const TransactionsList = ({
   setDescription,
   setBtnE,
   setBtnO,
+  setDataTransaction,
+  setUserState,
 }) => {
   const handleEdit = (data) => {
     setType(data.type);
@@ -33,7 +33,7 @@ const TransactionsList = ({
       setBtnO({ background: "#FF576B" });
     }
 
-    catchDataTransaction(data);
+    onDataChange(data, setDataTransaction);
     setToGoEdit(true);
     setShowModal(true);
     setModalType("Editar");
@@ -77,7 +77,11 @@ const TransactionsList = ({
                     />
                   </button>
 
-                  <button onClick={() => remove(transaction)}>
+                  <button
+                    onClick={() =>
+                      remove(transaction, transactions, setUserState)
+                    }
+                  >
                     <img
                       className="remove-icon"
                       src={RemoveIcon}

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import AddTransactionModal from "../components/AddTransactionModal";
-import Header from "../components/HeaderDashboard";
-import TransactionsList from "../components/TransactionsList";
-import TransactionsResume from "../components/TransactionsResume";
+import {
+  AddTransactionModal,
+  HeaderUser,
+  TransactionsList,
+  TransactionsResume,
+} from "../utils/components";
+import { handleResume } from "../utils/functions";
 import "../styles/Dashboard.css";
 
 const Dashboard = ({ user, setDataAuth }) => {
-  const [showModal, setShowModal] = useState(false);
   const [userState, setUserState] = useState(() => {
     const userData = JSON.parse(localStorage.getItem(`${user.email}`));
     return (
@@ -23,58 +25,9 @@ const Dashboard = ({ user, setDataAuth }) => {
   const [modalType, setModalType] = useState("Adicionar");
   const [toGoEdit, setToGoEdit] = useState(false);
   const [dataTransaction, setDataTransaction] = useState({});
-
-  const catchDataTransaction = (childObj) => {
-    setDataTransaction(childObj);
-  };
-
-  const remove = (data) => {
-    let newTransactions = transactions.filter(
-      (transaction) => transaction !== data
-    );
-    setUserState((prevUserState) => ({
-      ...prevUserState,
-      transactions: newTransactions,
-    }));
-  };
-
-  const toCurrencyStyle = (value) => {
-    return value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  };
-
-  useEffect(() => {
-    localStorage.setItem(`${user.email}`, JSON.stringify(userState));
-    handleResume();
-  }, [userState, user]);
-
   const [inflow, setInflow] = useState(0);
   const [outflow, setOutflow] = useState(0);
   const [total, setTotal] = useState(0);
-
-  const handleResume = () => {
-    let countInflow = 0;
-    let countOutflow = 0;
-
-    userState.transactions.map((transaction) => {
-      let valueNumber = parseInt(transaction.value);
-
-      if (transaction.type === "entrada") {
-        countInflow += valueNumber;
-      } else {
-        countOutflow += valueNumber;
-      }
-    });
-
-    let countTotal = countInflow - countOutflow;
-
-    setInflow(countInflow);
-    setOutflow(countOutflow);
-    setTotal(countTotal);
-  };
-
   const [type, setType] = useState("retirada");
   const [btnE, setBtnE] = useState({ background: "#b9b9b9" });
   const [btnO, setBtnO] = useState({ background: "#FF576B" });
@@ -82,20 +35,24 @@ const Dashboard = ({ user, setDataAuth }) => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(`${user.email}`, JSON.stringify(userState));
+    handleResume(userState, setInflow, setOutflow, setTotal);
+  }, [userState, user]);
 
   return (
     <div className="container-dashboard">
-      <Header user={user} setDataAuth={setDataAuth} />
+      <HeaderUser user={user} setDataAuth={setDataAuth} />
 
       <main className="container-transactions-components">
         <TransactionsList
           transactions={transactions}
-          toCurrencyStyle={toCurrencyStyle}
-          catchDataTransaction={catchDataTransaction}
+          setDataTransaction={setDataTransaction}
           setToGoEdit={setToGoEdit}
           setShowModal={setShowModal}
           setModalType={setModalType}
-          remove={remove}
           setType={setType}
           setValue={setValue}
           setCategory={setCategory}
@@ -103,6 +60,7 @@ const Dashboard = ({ user, setDataAuth }) => {
           setDescription={setDescription}
           setBtnE={setBtnE}
           setBtnO={setBtnO}
+          setUserState={setUserState}
         />
         <TransactionsResume
           setShowModal={setShowModal}
@@ -112,7 +70,6 @@ const Dashboard = ({ user, setDataAuth }) => {
           inflow={inflow}
           outflow={outflow}
           total={total}
-          toCurrencyStyle={toCurrencyStyle}
           setType={setType}
           setValue={setValue}
           setCategory={setCategory}
@@ -145,7 +102,7 @@ const Dashboard = ({ user, setDataAuth }) => {
         setCategory={setCategory}
         setDate={setDate}
         setDescription={setDescription}
-        remove={remove}
+        transactions={transactions}
       />
     </div>
   );

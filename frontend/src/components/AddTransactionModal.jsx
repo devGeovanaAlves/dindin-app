@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { setId, findDay, dateFormat, remove } from "../utils/functions";
 import "../styles/AddTransactionModal.css";
 
 const AddTransactionModal = ({
@@ -25,41 +26,12 @@ const AddTransactionModal = ({
   setDate,
   description,
   setDescription,
-  remove,
+  transactions,
 }) => {
   useEffect(() => {
     let localUser = JSON.stringify(userState);
     localStorage.setItem(`${userState.email}`, localUser);
   }, [userState]);
-
-  const setId = () => {
-    if (type === "entrada")
-      return `E${Math.floor(Math.random() * 100) + date.replace("-", "")}`;
-    if (type === "retirada")
-      return `S${Math.floor(Math.random() * 100) + date.replace("-", "")} `;
-  };
-
-  const findDay = () => {
-    const dayWeek = new Date(date).getDay();
-    const days = [
-      "Domingo",
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-      "Domingo",
-    ];
-
-    return days[dayWeek + 1];
-  };
-
-  const dateFormat = () => {
-    let newDate = new Date(date);
-
-    return newDate.toLocaleDateString("pt-BR", { timeZone: "UTC" });
-  };
 
   useEffect(() => {
     if (type === "entrada") {
@@ -74,16 +46,16 @@ const AddTransactionModal = ({
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    toGoEdit && remove(dataTransaction);
+    toGoEdit && remove(dataTransaction, transactions, setUserState);
 
     const newTransaction = {
-      id: setId(),
+      id: setId(type, date),
       type,
       value,
       category,
-      dateFormat: dateFormat(),
+      dateFormat: dateFormat(date),
       date,
-      day: findDay(),
+      day: findDay(date),
       description,
     };
 

@@ -1,10 +1,9 @@
-import Header from "../components/Header";
-import Description from "../components/DescriptionHome";
-import "../styles/Home.css";
-import "../styles/SignInForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { onDataChange } from "../utils/functions";
+import { Header, Description } from "../utils/components";
+import "../styles/Home.css";
+import "../styles/SignInForm.css";
 
 const Home = ({ setDataAuth }) => {
   const navigate = useNavigate();

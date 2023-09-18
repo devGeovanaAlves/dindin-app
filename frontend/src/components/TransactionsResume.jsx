@@ -1,3 +1,4 @@
+import { toCurrencyStyle } from "../utils/functions";
 import "../styles/TransactionsResume.css";
 
 const TransactionsResume = ({
@@ -7,7 +8,6 @@ const TransactionsResume = ({
   inflow,
   outflow,
   total,
-  toCurrencyStyle,
   setType,
   setValue,
   setCategory,
