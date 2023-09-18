@@ -8,10 +8,6 @@ import "./styles/global.css";
 const MainRoutes = () => {
   const [dataAuth, setDataAuth] = useState({});
 
-  const handleDataAuth = (childObj) => {
-    setDataAuth(childObj);
-  };
-
   const isAuthenticated = ({ userPass, formPass }) => {
     return userPass && formPass && userPass === formPass;
   };
@@ -37,7 +33,7 @@ const MainRoutes = () => {
             />
           }
         >
-          <Route path="/" element={<Home handleDataAuth={handleDataAuth} />} />
+          <Route path="/" element={<Home setDataAuth={setDataAuth} />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Route>
 
@@ -51,7 +47,7 @@ const MainRoutes = () => {
         >
           <Route
             path="/dashboard"
-            element={<Dashboard user={user} handleDataAuth={handleDataAuth} />}
+            element={<Dashboard user={user} setDataAuth={setDataAuth} />}
           />
         </Route>
       </Routes>

@@ -1,12 +1,12 @@
 import Header from "../components/Header";
-// import SignIn from "../components/SignInForm";
 import Description from "../components/DescriptionHome";
 import "../styles/Home.css";
 import "../styles/SignInForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { onDataChange } from "../utils/functions";
 
-const Home = ({ handleDataAuth }) => {
+const Home = ({ setDataAuth }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,11 +31,14 @@ const Home = ({ handleDataAuth }) => {
     }
 
     if (user.password === password) {
-      handleDataAuth({
-        userPass: user.password,
-        formPass: password,
-        userKey: user.email,
-      });
+      onDataChange(
+        {
+          userPass: user.password,
+          formPass: password,
+          userKey: user.email,
+        },
+        setDataAuth
+      );
       navigate("/dashboard");
     } else {
       setError(true);

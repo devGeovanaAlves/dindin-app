@@ -5,7 +5,7 @@ import TransactionsList from "../components/TransactionsList";
 import TransactionsResume from "../components/TransactionsResume";
 import "../styles/Dashboard.css";
 
-const Dashboard = ({ user, handleDataAuth }) => {
+const Dashboard = ({ user, setDataAuth }) => {
   const [showModal, setShowModal] = useState(false);
   const [userState, setUserState] = useState(() => {
     const userData = JSON.parse(localStorage.getItem(`${user.email}`));
@@ -85,7 +85,7 @@ const Dashboard = ({ user, handleDataAuth }) => {
 
   return (
     <div className="container-dashboard">
-      <Header user={user} handleDataAuth={handleDataAuth} />
+      <Header user={user} setDataAuth={setDataAuth} />
 
       <main className="container-transactions-components">
         <TransactionsList

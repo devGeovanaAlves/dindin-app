@@ -1,18 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
+import { onDataChange } from "../utils/functions";
 import Logo from "../../public/logo-icon.svg";
 import Avatar from "../assets/profile-icon.svg";
 import Logout from "../assets/logout-icon.svg";
 import "../styles/Header.css";
 
-const Header = ({ user, handleDataAuth }) => {
+const Header = ({ user, setDataAuth }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    handleDataAuth({
-      userPass: "",
-      formPass: "",
-      userKey: "",
-    });
+    onDataChange(
+      {
+        userPass: "",
+        formPass: "",
+        userKey: "",
+      },
+      setDataAuth
+    );
 
     navigate("/");
   };
