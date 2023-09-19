@@ -1,0 +1,53 @@
+.container-main-home {
+  display: flex;
+}
+
+.container-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  top: 5vh;
+
+  height: 60vh;
+  width: 60vw;
+  margin-left: 80px;
+}
+
+.container-description h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+
+  color: #fff;
+}
+
+.container-description h1 span {
+  color: #7b61ff;
+}
+
+.container-description p {
+  font-family: "Rubik", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+
+  color: #fff;
+}
+
+.container-description a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 284px;
+  height: 48px;
+  border-radius: 5px;
+
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+
+  color: #fff;
+  background-color: #7978d9;
+}

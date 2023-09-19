@@ -1,0 +1,19 @@
+.sign-in {
+  margin-right: 80px;
+}
+
+.sign-in form {
+  height: 65vh;
+}
+
+.sign-in form h1 {
+  margin: 30px 0 40px 0;
+}
+
+.sign-in form label {
+  margin-bottom: 7vh;
+}
+
+.sign-in .input-submit {
+  margin-top: 5vh;
+}

@@ -1,0 +1,8 @@
+.internal-modal-container,
+.edit-profile {
+  height: 78vh;
+}
+
+.edit-profile .modal-container-title h1 {
+  margin: 10px 0 20px 0;
+}

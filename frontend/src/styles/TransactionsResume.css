@@ -1,0 +1,97 @@
+.container-transactions-resume {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-right: 90px;
+  height: 37vh;
+
+  font-family: "Rubik", sans-serif;
+}
+
+.table-transactions-resume {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+
+  width: 236px;
+  height: 196px;
+
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  height: 50px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #2f2f2f;
+}
+
+.container-body-table-resume tr td {
+  height: 30px;
+}
+
+.container-footer-table-resume tr td {
+  height: 40px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.container-body-table-resume tr td,
+.container-footer-table-resume tr td {
+  width: 100px;
+}
+
+.entries-title,
+.outputs-title {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #2f2f2f;
+}
+
+.entries-value {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #645ffb;
+}
+
+.outputs-value {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #fa8c10;
+}
+
+.total-title {
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #2f2f2f;
+}
+
+.total-value {
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #3a9ff1;
+}
+
+.container-transactions-resume button {
+  width: 236px;
+  height: 46px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #fff;
+  background: #7978d9;
+}

@@ -1,0 +1,37 @@
+.sign-up {
+  position: relative;
+  bottom: 6vh;
+  left: 30vw;
+}
+
+.sign-up h1 {
+  margin: 20px 0 20px 0;
+}
+
+.sign-up form label {
+  margin-bottom: 4vh;
+}
+
+.sign-up .redirect-home,
+.sign-up .redirect-home a {
+  margin-bottom: 10px;
+
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #7b61ff;
+}
+
+.sign-up .input-submit {
+  margin: 20px 0 10px 0;
+}
+
+.redirect-home {
+  padding-bottom: 10px;
+}
+
+.sign-up .redirect-home a {
+  text-decoration: none;
+}

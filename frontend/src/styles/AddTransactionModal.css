@@ -1,0 +1,126 @@
+.external-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+
+  font-family: "Rubik", sans-serif;
+
+  background-color: rgba(61, 61, 61, 0.48);
+}
+
+.internal-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 30vw;
+  border-radius: 20px;
+
+  background: #fff;
+}
+
+.modal-container-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 23vw;
+  margin: 15px 0 15px 0;
+}
+
+.modal-container-title h1 {
+  color: #000;
+
+  font-size: 4vh;
+  font-weight: 700;
+}
+
+.modal-container-title button {
+  width: 28.58px;
+  height: 28.382px;
+  border: none;
+  cursor: pointer;
+
+  background: none;
+  background-image: url("../assets/close-icon.svg");
+  background-size: cover;
+}
+
+.modal-container-buttons {
+  display: flex;
+  gap: 1px;
+  margin: 20px 0 24px 0;
+}
+
+.modal-container-buttons button {
+  width: 11.5vw;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+
+  background-color: #b9b9b9;
+  color: #fff;
+}
+
+.internal-modal-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.internal-modal-container form label span {
+  font-size: 17px;
+  font-weight: 500;
+
+  color: #484848;
+}
+
+.internal-modal-container form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-modal {
+  width: 23vw;
+  height: 40.486px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  margin-top: 10px;
+}
+
+.internal-modal-container form label select option,
+.input-modal {
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #484848;
+}
+
+.input-submit-modal {
+  width: 15vw;
+  height: 41px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  position: relative;
+  bottom: 12px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  background: #7978d9;
+  color: #fff;
+  cursor: pointer;
+}

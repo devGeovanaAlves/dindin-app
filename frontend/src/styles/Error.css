@@ -1,0 +1,30 @@
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  margin: 15vh 0 0 80px;
+
+  width: 50vw;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 700;
+  color: #7b61ff;
+}
+
+h2 {
+  font-size: 56px;
+  color: #fff;
+}
+
+p {
+  font-size: 28px;
+  font-weight: 400;
+
+  color: #fff;
+}
