@@ -104,7 +104,7 @@ export const dateFormat = (date) => {
 
 /**
  *Remove transação do array de transações
- * @param {*} data - data que transação foi realizada, formato: "YYYY-MM-DD";
+ * @param {*} data - dados da transação selecionada;
  * @param {*} transactions - array que contém todas as transações do usuário;
  * @param {*} setUserState - função que altera dados do usuário;
  */
@@ -116,4 +116,33 @@ export const remove = (data, transactions, setUserState) => {
     ...prevUserState,
     transactions: newTransactions,
   }));
+};
+
+/**
+ * Altera estado de selectTransaction para abrir popUp
+ * @param {*} transaction  - transação selecionada
+ * @param {*} setSelectTransaction - função que altera estado de selectTransaction informando qual transação será deletada;
+ */
+export const handleDelete = (transaction, setSelectTransaction) => {
+  setSelectTransaction(transaction);
+};
+
+/**
+ *Exclui transação e fecha PopUp
+ * @param {*} selectTransaction - informa qual transação será deletada
+ * @param {*} transactions -array que contém todas as transações do usuário;
+ * @param {*} setUserState - função que altera dados do usuário;
+ * @param {*} setSelectTransaction -  - função que altera estado de selectTransaction informando qual transação será deletada;
+ */
+export const confirmDelete = (
+  selectTransaction,
+  transactions,
+  setUserState,
+  setSelectTransaction
+) => {
+  if (selectTransaction) {
+    remove(selectTransaction, transactions, setUserState, () => {
+      setSelectTransaction(null);
+    });
+  }
 };

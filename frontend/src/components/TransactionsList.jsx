@@ -1,7 +1,13 @@
-import { onDataChange, toCurrencyStyle, remove } from "../utils/functions";
+import {
+  onDataChange,
+  toCurrencyStyle,
+  handleDelete,
+  confirmDelete,
+} from "../utils/functions";
 import EditIcon from "../assets/edit-icon.svg";
 import RemoveIcon from "../assets/remove-icon.svg";
 import "../styles/TransactionsList.css";
+import { useState } from "react";
 
 const TransactionsList = ({
   transactions,
@@ -18,6 +24,8 @@ const TransactionsList = ({
   setDataTransaction,
   setUserState,
 }) => {
+  const [selectTransaction, setSelectTransaction] = useState(null);
+
   const handleEdit = (data) => {
     setType(data.type);
     setValue(data.value);
@@ -69,7 +77,10 @@ const TransactionsList = ({
                   {toCurrencyStyle(parseInt(transaction.value))}{" "}
                 </td>
                 <td className="buttons-line">
-                  <button onClick={() => handleEdit(transaction)}>
+                  <button
+                    className="btn"
+                    onClick={() => handleEdit(transaction)}
+                  >
                     <img
                       className="edit-icon"
                       src={EditIcon}
@@ -78,8 +89,9 @@ const TransactionsList = ({
                   </button>
 
                   <button
+                    className="btn"
                     onClick={() =>
-                      remove(transaction, transactions, setUserState)
+                      handleDelete(transaction, setSelectTransaction)
                     }
                   >
                     <img
@@ -89,6 +101,33 @@ const TransactionsList = ({
                     />
                   </button>
                 </td>
+                {selectTransaction &&
+                  selectTransaction.id === transaction.id && (
+                    <div className="container-popup">
+                      <span>Apagar item?</span>
+                      <div className="pop-up">
+                        <button
+                          className="popup-btn-yes"
+                          onClick={() =>
+                            confirmDelete(
+                              selectTransaction,
+                              transactions,
+                              setUserState,
+                              setSelectTransaction
+                            )
+                          }
+                        >
+                          Sim
+                        </button>
+                        <button
+                          className="popup-btn-not"
+                          onClick={() => setSelectTransaction(null)}
+                        >
+                          Não
+                        </button>
+                      </div>
+                    </div>
+                  )}
               </tr>
             );
           })}
